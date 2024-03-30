@@ -1,0 +1,1 @@
+/usr/bin/arm-linux-gnueabihf-gcc -g -fsanitize=address CMakeFiles/find_the_dot.dir/src/main.c.o CMakeFiles/find_the_dot.dir/src/shutdown.c.o -o find_the_dot  ../hal/libhal.a 

@@ -1,0 +1,11 @@
+/home/felix/cmpt433/work/Assignment 4/build/CMakeFiles/rebuild_cache.dir
+/home/felix/cmpt433/work/Assignment 4/build/CMakeFiles/edit_cache.dir
+/home/felix/cmpt433/work/Assignment 4/build/hal/CMakeFiles/rebuild_cache.dir
+/home/felix/cmpt433/work/Assignment 4/build/hal/CMakeFiles/edit_cache.dir
+/home/felix/cmpt433/work/Assignment 4/build/hal/CMakeFiles/hal.dir
+/home/felix/cmpt433/work/Assignment 4/build/app/CMakeFiles/rebuild_cache.dir
+/home/felix/cmpt433/work/Assignment 4/build/app/CMakeFiles/edit_cache.dir
+/home/felix/cmpt433/work/Assignment 4/build/app/CMakeFiles/find_the_dot.dir
+/home/felix/cmpt433/work/Assignment 4/build/pru-as4/CMakeFiles/rebuild_cache.dir
+/home/felix/cmpt433/work/Assignment 4/build/pru-as4/CMakeFiles/edit_cache.dir
+/home/felix/cmpt433/work/Assignment 4/build/pru-as4/CMakeFiles/my_custom_target_that_always_runs.dir

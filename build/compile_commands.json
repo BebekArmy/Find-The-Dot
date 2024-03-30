@@ -1,0 +1,27 @@
+[
+{
+  "directory": "/home/felix/cmpt433/work/Assignment 4/build/hal",
+  "command": "/usr/bin/arm-linux-gnueabihf-gcc  -I\"/home/felix/cmpt433/work/Assignment 4/find_the_dot/hal/hal/include\" -I\"/home/felix/cmpt433/work/Assignment 4/find_the_dot/hal/include\" -g -Wall -Wpedantic -Wextra -fdiagnostics-color -fsanitize=address -std=gnu11 -o CMakeFiles/hal.dir/src/accelerometer.c.o -c \"/home/felix/cmpt433/work/Assignment 4/find_the_dot/hal/src/accelerometer.c\"",
+  "file": "/home/felix/cmpt433/work/Assignment 4/find_the_dot/hal/src/accelerometer.c"
+},
+{
+  "directory": "/home/felix/cmpt433/work/Assignment 4/build/hal",
+  "command": "/usr/bin/arm-linux-gnueabihf-gcc  -I\"/home/felix/cmpt433/work/Assignment 4/find_the_dot/hal/hal/include\" -I\"/home/felix/cmpt433/work/Assignment 4/find_the_dot/hal/include\" -g -Wall -Wpedantic -Wextra -fdiagnostics-color -fsanitize=address -std=gnu11 -o CMakeFiles/hal.dir/src/display.c.o -c \"/home/felix/cmpt433/work/Assignment 4/find_the_dot/hal/src/display.c\"",
+  "file": "/home/felix/cmpt433/work/Assignment 4/find_the_dot/hal/src/display.c"
+},
+{
+  "directory": "/home/felix/cmpt433/work/Assignment 4/build/hal",
+  "command": "/usr/bin/arm-linux-gnueabihf-gcc  -I\"/home/felix/cmpt433/work/Assignment 4/find_the_dot/hal/hal/include\" -I\"/home/felix/cmpt433/work/Assignment 4/find_the_dot/hal/include\" -g -Wall -Wpedantic -Wextra -fdiagnostics-color -fsanitize=address -std=gnu11 -o CMakeFiles/hal.dir/src/general_command.c.o -c \"/home/felix/cmpt433/work/Assignment 4/find_the_dot/hal/src/general_command.c\"",
+  "file": "/home/felix/cmpt433/work/Assignment 4/find_the_dot/hal/src/general_command.c"
+},
+{
+  "directory": "/home/felix/cmpt433/work/Assignment 4/build/app",
+  "command": "/usr/bin/arm-linux-gnueabihf-gcc  -I\"/home/felix/cmpt433/work/Assignment 4/find_the_dot/app/include\" -I\"/home/felix/cmpt433/work/Assignment 4/find_the_dot/app/../pru-as4\" -I\"/home/felix/cmpt433/work/Assignment 4/find_the_dot/hal/include\" -g -Wall -Wpedantic -Wextra -fdiagnostics-color -fsanitize=address -std=gnu11 -o CMakeFiles/find_the_dot.dir/src/main.c.o -c \"/home/felix/cmpt433/work/Assignment 4/find_the_dot/app/src/main.c\"",
+  "file": "/home/felix/cmpt433/work/Assignment 4/find_the_dot/app/src/main.c"
+},
+{
+  "directory": "/home/felix/cmpt433/work/Assignment 4/build/app",
+  "command": "/usr/bin/arm-linux-gnueabihf-gcc  -I\"/home/felix/cmpt433/work/Assignment 4/find_the_dot/app/include\" -I\"/home/felix/cmpt433/work/Assignment 4/find_the_dot/app/../pru-as4\" -I\"/home/felix/cmpt433/work/Assignment 4/find_the_dot/hal/include\" -g -Wall -Wpedantic -Wextra -fdiagnostics-color -fsanitize=address -std=gnu11 -o CMakeFiles/find_the_dot.dir/src/shutdown.c.o -c \"/home/felix/cmpt433/work/Assignment 4/find_the_dot/app/src/shutdown.c\"",
+  "file": "/home/felix/cmpt433/work/Assignment 4/find_the_dot/app/src/shutdown.c"
+}
+]
