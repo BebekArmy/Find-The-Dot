@@ -5,6 +5,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_C
   "/home/felix/cmpt433/work/Assignment 4/find_the_dot/app/src/main.c" "/home/felix/cmpt433/work/Assignment 4/build/app/CMakeFiles/find_the_dot.dir/src/main.c.o"
+  "/home/felix/cmpt433/work/Assignment 4/find_the_dot/app/src/neopixel.c" "/home/felix/cmpt433/work/Assignment 4/build/app/CMakeFiles/find_the_dot.dir/src/neopixel.c.o"
   "/home/felix/cmpt433/work/Assignment 4/find_the_dot/app/src/shutdown.c" "/home/felix/cmpt433/work/Assignment 4/build/app/CMakeFiles/find_the_dot.dir/src/shutdown.c.o"
   )
 set(CMAKE_C_COMPILER_ID "GNU")

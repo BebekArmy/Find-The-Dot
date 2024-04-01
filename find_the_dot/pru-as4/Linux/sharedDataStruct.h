@@ -11,8 +11,10 @@
 // Add padding fields (char _p1) to pad out to alignment.
 // My Shared Memory Structure
 // ----------------------------------------------------------------
+
+#define STR_LEN         8
 typedef struct {
- bool isLedOn;
- bool isButtonPressed;
+    //bool shutdown;
+    _Alignas(4) uint32_t ledColor[STR_LEN];
 } sharedMemStruct_t;
 #endif

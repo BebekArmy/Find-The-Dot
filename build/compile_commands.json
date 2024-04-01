@@ -21,6 +21,11 @@
 },
 {
   "directory": "/home/felix/cmpt433/work/Assignment 4/build/app",
+  "command": "/usr/bin/arm-linux-gnueabihf-gcc  -I\"/home/felix/cmpt433/work/Assignment 4/find_the_dot/app/include\" -I\"/home/felix/cmpt433/work/Assignment 4/find_the_dot/app/../pru-as4\" -I\"/home/felix/cmpt433/work/Assignment 4/find_the_dot/hal/include\" -g -Wall -Wpedantic -Wextra -fdiagnostics-color -fsanitize=address -std=gnu11 -o CMakeFiles/find_the_dot.dir/src/neopixel.c.o -c \"/home/felix/cmpt433/work/Assignment 4/find_the_dot/app/src/neopixel.c\"",
+  "file": "/home/felix/cmpt433/work/Assignment 4/find_the_dot/app/src/neopixel.c"
+},
+{
+  "directory": "/home/felix/cmpt433/work/Assignment 4/build/app",
   "command": "/usr/bin/arm-linux-gnueabihf-gcc  -I\"/home/felix/cmpt433/work/Assignment 4/find_the_dot/app/include\" -I\"/home/felix/cmpt433/work/Assignment 4/find_the_dot/app/../pru-as4\" -I\"/home/felix/cmpt433/work/Assignment 4/find_the_dot/hal/include\" -g -Wall -Wpedantic -Wextra -fdiagnostics-color -fsanitize=address -std=gnu11 -o CMakeFiles/find_the_dot.dir/src/shutdown.c.o -c \"/home/felix/cmpt433/work/Assignment 4/find_the_dot/app/src/shutdown.c\"",
   "file": "/home/felix/cmpt433/work/Assignment 4/find_the_dot/app/src/shutdown.c"
 }

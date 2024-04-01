@@ -171,6 +171,33 @@ src/main.c.s:
 	cd "/home/felix/cmpt433/work/Assignment 4/build" && $(MAKE) $(MAKESILENT) -f app/CMakeFiles/find_the_dot.dir/build.make app/CMakeFiles/find_the_dot.dir/src/main.c.s
 .PHONY : src/main.c.s
 
+src/neopixel.o: src/neopixel.c.o
+
+.PHONY : src/neopixel.o
+
+# target to build an object file
+src/neopixel.c.o:
+	cd "/home/felix/cmpt433/work/Assignment 4/build" && $(MAKE) $(MAKESILENT) -f app/CMakeFiles/find_the_dot.dir/build.make app/CMakeFiles/find_the_dot.dir/src/neopixel.c.o
+.PHONY : src/neopixel.c.o
+
+src/neopixel.i: src/neopixel.c.i
+
+.PHONY : src/neopixel.i
+
+# target to preprocess a source file
+src/neopixel.c.i:
+	cd "/home/felix/cmpt433/work/Assignment 4/build" && $(MAKE) $(MAKESILENT) -f app/CMakeFiles/find_the_dot.dir/build.make app/CMakeFiles/find_the_dot.dir/src/neopixel.c.i
+.PHONY : src/neopixel.c.i
+
+src/neopixel.s: src/neopixel.c.s
+
+.PHONY : src/neopixel.s
+
+# target to generate assembly for a file
+src/neopixel.c.s:
+	cd "/home/felix/cmpt433/work/Assignment 4/build" && $(MAKE) $(MAKESILENT) -f app/CMakeFiles/find_the_dot.dir/build.make app/CMakeFiles/find_the_dot.dir/src/neopixel.c.s
+.PHONY : src/neopixel.c.s
+
 src/shutdown.o: src/shutdown.c.o
 
 .PHONY : src/shutdown.o
@@ -210,6 +237,9 @@ help:
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"
+	@echo "... src/neopixel.o"
+	@echo "... src/neopixel.i"
+	@echo "... src/neopixel.s"
 	@echo "... src/shutdown.o"
 	@echo "... src/shutdown.i"
 	@echo "... src/shutdown.s"

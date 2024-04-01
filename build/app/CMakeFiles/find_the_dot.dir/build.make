@@ -89,9 +89,22 @@ app/CMakeFiles/find_the_dot.dir/src/main.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/find_the_dot.dir/src/main.c.s"
 	cd "/home/felix/cmpt433/work/Assignment 4/build/app" && /usr/bin/arm-linux-gnueabihf-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "/home/felix/cmpt433/work/Assignment 4/find_the_dot/app/src/main.c" -o CMakeFiles/find_the_dot.dir/src/main.c.s
 
+app/CMakeFiles/find_the_dot.dir/src/neopixel.c.o: app/CMakeFiles/find_the_dot.dir/flags.make
+app/CMakeFiles/find_the_dot.dir/src/neopixel.c.o: /home/felix/cmpt433/work/Assignment\ 4/find_the_dot/app/src/neopixel.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/felix/cmpt433/work/Assignment 4/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_2) "Building C object app/CMakeFiles/find_the_dot.dir/src/neopixel.c.o"
+	cd "/home/felix/cmpt433/work/Assignment 4/build/app" && /usr/bin/arm-linux-gnueabihf-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/find_the_dot.dir/src/neopixel.c.o -c "/home/felix/cmpt433/work/Assignment 4/find_the_dot/app/src/neopixel.c"
+
+app/CMakeFiles/find_the_dot.dir/src/neopixel.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/find_the_dot.dir/src/neopixel.c.i"
+	cd "/home/felix/cmpt433/work/Assignment 4/build/app" && /usr/bin/arm-linux-gnueabihf-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "/home/felix/cmpt433/work/Assignment 4/find_the_dot/app/src/neopixel.c" > CMakeFiles/find_the_dot.dir/src/neopixel.c.i
+
+app/CMakeFiles/find_the_dot.dir/src/neopixel.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/find_the_dot.dir/src/neopixel.c.s"
+	cd "/home/felix/cmpt433/work/Assignment 4/build/app" && /usr/bin/arm-linux-gnueabihf-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "/home/felix/cmpt433/work/Assignment 4/find_the_dot/app/src/neopixel.c" -o CMakeFiles/find_the_dot.dir/src/neopixel.c.s
+
 app/CMakeFiles/find_the_dot.dir/src/shutdown.c.o: app/CMakeFiles/find_the_dot.dir/flags.make
 app/CMakeFiles/find_the_dot.dir/src/shutdown.c.o: /home/felix/cmpt433/work/Assignment\ 4/find_the_dot/app/src/shutdown.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/felix/cmpt433/work/Assignment 4/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_2) "Building C object app/CMakeFiles/find_the_dot.dir/src/shutdown.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/felix/cmpt433/work/Assignment 4/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_3) "Building C object app/CMakeFiles/find_the_dot.dir/src/shutdown.c.o"
 	cd "/home/felix/cmpt433/work/Assignment 4/build/app" && /usr/bin/arm-linux-gnueabihf-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/find_the_dot.dir/src/shutdown.c.o -c "/home/felix/cmpt433/work/Assignment 4/find_the_dot/app/src/shutdown.c"
 
 app/CMakeFiles/find_the_dot.dir/src/shutdown.c.i: cmake_force
@@ -105,17 +118,19 @@ app/CMakeFiles/find_the_dot.dir/src/shutdown.c.s: cmake_force
 # Object files for target find_the_dot
 find_the_dot_OBJECTS = \
 "CMakeFiles/find_the_dot.dir/src/main.c.o" \
+"CMakeFiles/find_the_dot.dir/src/neopixel.c.o" \
 "CMakeFiles/find_the_dot.dir/src/shutdown.c.o"
 
 # External object files for target find_the_dot
 find_the_dot_EXTERNAL_OBJECTS =
 
 app/find_the_dot: app/CMakeFiles/find_the_dot.dir/src/main.c.o
+app/find_the_dot: app/CMakeFiles/find_the_dot.dir/src/neopixel.c.o
 app/find_the_dot: app/CMakeFiles/find_the_dot.dir/src/shutdown.c.o
 app/find_the_dot: app/CMakeFiles/find_the_dot.dir/build.make
 app/find_the_dot: hal/libhal.a
 app/find_the_dot: app/CMakeFiles/find_the_dot.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir="/home/felix/cmpt433/work/Assignment 4/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_3) "Linking C executable find_the_dot"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir="/home/felix/cmpt433/work/Assignment 4/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_4) "Linking C executable find_the_dot"
 	cd "/home/felix/cmpt433/work/Assignment 4/build/app" && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/find_the_dot.dir/link.txt --verbose=$(VERBOSE)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold "Copying ARM executable to public NFS directory"
 	cd "/home/felix/cmpt433/work/Assignment 4/build/app" && /usr/bin/cmake -E copy /home/felix/cmpt433/work/Assignment\ 4/build/app/find_the_dot ~/cmpt433/public/Assignment\ 4/find_the_dot

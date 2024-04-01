@@ -1,5 +1,6 @@
 #include "hal/accelerometer.h"
 #include "hal/display.h"
+#include "neopixel.h"
 
 #include <pthread.h>
 #include <string.h>
@@ -11,12 +12,12 @@ pthread_cond_t shutdownCond = PTHREAD_COND_INITIALIZER;
 
 void createThreads()
 {
-
+    neopixelInit();
 }
 
 void joinThreads()
 {
-
+    neopixelShutdown();
 }
 
 void waitShutdown()

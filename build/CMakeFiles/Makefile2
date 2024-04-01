@@ -153,7 +153,7 @@ pru-as4/clean: pru-as4/CMakeFiles/my_custom_target_that_always_runs.dir/clean
 hal/CMakeFiles/hal.dir/all:
 	$(MAKE) $(MAKESILENT) -f hal/CMakeFiles/hal.dir/build.make hal/CMakeFiles/hal.dir/depend
 	$(MAKE) $(MAKESILENT) -f hal/CMakeFiles/hal.dir/build.make hal/CMakeFiles/hal.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/home/felix/cmpt433/work/Assignment 4/build/CMakeFiles" --progress-num=4,5,6,7 "Built target hal"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/home/felix/cmpt433/work/Assignment 4/build/CMakeFiles" --progress-num=5,6,7,8 "Built target hal"
 .PHONY : hal/CMakeFiles/hal.dir/all
 
 # Build rule for subdir invocation for target.
@@ -180,12 +180,12 @@ hal/CMakeFiles/hal.dir/clean:
 app/CMakeFiles/find_the_dot.dir/all: hal/CMakeFiles/hal.dir/all
 	$(MAKE) $(MAKESILENT) -f app/CMakeFiles/find_the_dot.dir/build.make app/CMakeFiles/find_the_dot.dir/depend
 	$(MAKE) $(MAKESILENT) -f app/CMakeFiles/find_the_dot.dir/build.make app/CMakeFiles/find_the_dot.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/home/felix/cmpt433/work/Assignment 4/build/CMakeFiles" --progress-num=1,2,3 "Built target find_the_dot"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/home/felix/cmpt433/work/Assignment 4/build/CMakeFiles" --progress-num=1,2,3,4 "Built target find_the_dot"
 .PHONY : app/CMakeFiles/find_the_dot.dir/all
 
 # Build rule for subdir invocation for target.
 app/CMakeFiles/find_the_dot.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start "/home/felix/cmpt433/work/Assignment 4/build/CMakeFiles" 7
+	$(CMAKE_COMMAND) -E cmake_progress_start "/home/felix/cmpt433/work/Assignment 4/build/CMakeFiles" 8
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 app/CMakeFiles/find_the_dot.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start "/home/felix/cmpt433/work/Assignment 4/build/CMakeFiles" 0
 .PHONY : app/CMakeFiles/find_the_dot.dir/rule
@@ -207,7 +207,7 @@ app/CMakeFiles/find_the_dot.dir/clean:
 pru-as4/CMakeFiles/my_custom_target_that_always_runs.dir/all:
 	$(MAKE) $(MAKESILENT) -f pru-as4/CMakeFiles/my_custom_target_that_always_runs.dir/build.make pru-as4/CMakeFiles/my_custom_target_that_always_runs.dir/depend
 	$(MAKE) $(MAKESILENT) -f pru-as4/CMakeFiles/my_custom_target_that_always_runs.dir/build.make pru-as4/CMakeFiles/my_custom_target_that_always_runs.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/home/felix/cmpt433/work/Assignment 4/build/CMakeFiles" --progress-num=8 "Built target my_custom_target_that_always_runs"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/home/felix/cmpt433/work/Assignment 4/build/CMakeFiles" --progress-num=9 "Built target my_custom_target_that_always_runs"
 .PHONY : pru-as4/CMakeFiles/my_custom_target_that_always_runs.dir/all
 
 # Build rule for subdir invocation for target.

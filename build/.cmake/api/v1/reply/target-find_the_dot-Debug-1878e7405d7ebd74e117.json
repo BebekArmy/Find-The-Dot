@@ -130,7 +130,8 @@
 			"sourceIndexes" : 
 			[
 				0,
-				1
+				1,
+				2
 			]
 		}
 	],
@@ -181,7 +182,8 @@
 			"sourceIndexes" : 
 			[
 				0,
-				1
+				1,
+				2
 			]
 		}
 	],
@@ -191,6 +193,12 @@
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
 			"path" : "app/src/main.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "app/src/neopixel.c",
 			"sourceGroupIndex" : 0
 		},
 		{
