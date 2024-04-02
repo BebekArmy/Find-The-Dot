@@ -46,6 +46,16 @@
 volatile register uint32_t __R30;
 volatile register uint32_t __R31;
 
+// GPIO Input: P8_15 = pru0_pru_r31_15 
+//   = JSRT (Joystick Right) on Zen Cape
+//   (Happens to be bit 15 and p8_15;
+#define JOYSTICK_RIGHT_MASK (1 << 15)
+
+// GPIO Input: P8_16 = pru0_pru_r31_14
+//   = JSDW (Joystick Down) on Zen Cape
+//   (Happens to be bit 14 and p8_16;
+#define JOYSTICK_DOWN_MASK (1 << 14)
+
 #define THIS_PRU_DRAM       0x00000         // Address of DRAM
 #define OFFSET              0x200           // Skip 0x100 for Stack, 0x100 for Heap (from makefile)
 #define THIS_PRU_DRAM_USABLE (THIS_PRU_DRAM + OFFSET)
@@ -80,6 +90,8 @@ void main(void)
     __delay_cycles(resetCycles);
 
     while(true) {
+        pSharedMemStruct->isJoyStickRightPressed = (__R31 & JOYSTICK_RIGHT_MASK) != 0;
+        pSharedMemStruct->isjoyStickDownPressed = (__R31 & JOYSTICK_DOWN_MASK) != 0;
         memcpy(color, pSharedMemStruct->ledColor, sizeof(color));
         for(int j = 0; j < STR_LEN; j++) {
             for(int i = 31; i >= 0; i--) {

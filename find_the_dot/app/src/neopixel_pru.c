@@ -89,7 +89,7 @@ void *neopixel(void *args) {
 
 
 void neopixelInit() {
-    system("config-pin P8.11 pruout");
+    runCommand("config-pin P8.11 pruout");
     pthread_create(&neopixelThread, NULL, neopixel, NULL);
 }
 

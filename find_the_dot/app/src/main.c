@@ -3,6 +3,7 @@
 #include <stdbool.h>
 #include <stdlib.h>
 #include "shutdown.h"
+#include "joystick_pru.h"
 
 
 void testBuzzer() {
@@ -20,12 +21,21 @@ void testBuzzer() {
     }
 }
 
+void testjoyStick() {
+    while (true) {
+        if (isJoystickDownPressed()) {
+            printf("Joystick Down Pressed\n");
+            sleep(1);
+        } else if (isJoystickRightPressed()) {
+            break;
+        }
+    }
+}
+
 int main(void) {
 
     createThreads();
-    // waitShutdown();
-    //testBuzzer();
-
+    sleep(5);
     joinThreads();
 
     return 0;

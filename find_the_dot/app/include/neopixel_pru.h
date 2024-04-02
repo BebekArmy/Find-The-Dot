@@ -1,5 +1,5 @@
-#ifndef _NEOPIXEL_H_
-#define _NEOPIXEL_H_
+#ifndef _NEOPIXEL_PRU_H_
+#define _NEOPIXEL_PRU_H_
 
 /* Module to initialize and cleanup the neopixel thread.
 

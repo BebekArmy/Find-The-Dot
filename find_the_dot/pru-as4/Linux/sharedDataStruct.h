@@ -14,7 +14,8 @@
 
 #define STR_LEN         8
 typedef struct {
-    //bool shutdown;
+    bool isJoyStickRightPressed;
+    bool isjoyStickDownPressed;
     _Alignas(4) uint32_t ledColor[STR_LEN];
 } sharedMemStruct_t;
 #endif
