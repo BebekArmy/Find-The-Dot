@@ -11,5 +11,6 @@ app/CMakeFiles/find_the_dot.dir/src/neopixel.c.o: /home/felix/cmpt433/work/Assig
 app/CMakeFiles/find_the_dot.dir/src/shutdown.c.o: /home/felix/cmpt433/work/Assignment\ 4/find_the_dot/app/include/neopixel.h
 app/CMakeFiles/find_the_dot.dir/src/shutdown.c.o: /home/felix/cmpt433/work/Assignment\ 4/find_the_dot/app/src/shutdown.c
 app/CMakeFiles/find_the_dot.dir/src/shutdown.c.o: /home/felix/cmpt433/work/Assignment\ 4/find_the_dot/hal/include/hal/accelerometer.h
+app/CMakeFiles/find_the_dot.dir/src/shutdown.c.o: /home/felix/cmpt433/work/Assignment\ 4/find_the_dot/hal/include/hal/buzzer.h
 app/CMakeFiles/find_the_dot.dir/src/shutdown.c.o: /home/felix/cmpt433/work/Assignment\ 4/find_the_dot/hal/include/hal/display.h
 

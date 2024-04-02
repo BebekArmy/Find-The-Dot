@@ -171,6 +171,33 @@ src/accelerometer.c.s:
 	cd "/home/felix/cmpt433/work/Assignment 4/build" && $(MAKE) $(MAKESILENT) -f hal/CMakeFiles/hal.dir/build.make hal/CMakeFiles/hal.dir/src/accelerometer.c.s
 .PHONY : src/accelerometer.c.s
 
+src/buzzer.o: src/buzzer.c.o
+
+.PHONY : src/buzzer.o
+
+# target to build an object file
+src/buzzer.c.o:
+	cd "/home/felix/cmpt433/work/Assignment 4/build" && $(MAKE) $(MAKESILENT) -f hal/CMakeFiles/hal.dir/build.make hal/CMakeFiles/hal.dir/src/buzzer.c.o
+.PHONY : src/buzzer.c.o
+
+src/buzzer.i: src/buzzer.c.i
+
+.PHONY : src/buzzer.i
+
+# target to preprocess a source file
+src/buzzer.c.i:
+	cd "/home/felix/cmpt433/work/Assignment 4/build" && $(MAKE) $(MAKESILENT) -f hal/CMakeFiles/hal.dir/build.make hal/CMakeFiles/hal.dir/src/buzzer.c.i
+.PHONY : src/buzzer.c.i
+
+src/buzzer.s: src/buzzer.c.s
+
+.PHONY : src/buzzer.s
+
+# target to generate assembly for a file
+src/buzzer.c.s:
+	cd "/home/felix/cmpt433/work/Assignment 4/build" && $(MAKE) $(MAKESILENT) -f hal/CMakeFiles/hal.dir/build.make hal/CMakeFiles/hal.dir/src/buzzer.c.s
+.PHONY : src/buzzer.c.s
+
 src/display.o: src/display.c.o
 
 .PHONY : src/display.o
@@ -237,6 +264,9 @@ help:
 	@echo "... src/accelerometer.o"
 	@echo "... src/accelerometer.i"
 	@echo "... src/accelerometer.s"
+	@echo "... src/buzzer.o"
+	@echo "... src/buzzer.i"
+	@echo "... src/buzzer.s"
 	@echo "... src/display.o"
 	@echo "... src/display.i"
 	@echo "... src/display.s"

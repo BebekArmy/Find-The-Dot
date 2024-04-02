@@ -115,7 +115,8 @@
 			[
 				0,
 				1,
-				2
+				2,
+				3
 			]
 		}
 	],
@@ -135,7 +136,8 @@
 			[
 				0,
 				1,
-				2
+				2,
+				3
 			]
 		}
 	],
@@ -145,6 +147,12 @@
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
 			"path" : "hal/src/accelerometer.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "hal/src/buzzer.c",
 			"sourceGroupIndex" : 0
 		},
 		{

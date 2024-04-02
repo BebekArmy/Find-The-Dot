@@ -1,5 +1,6 @@
 file(REMOVE_RECURSE
   "CMakeFiles/hal.dir/src/accelerometer.c.o"
+  "CMakeFiles/hal.dir/src/buzzer.c.o"
   "CMakeFiles/hal.dir/src/display.c.o"
   "CMakeFiles/hal.dir/src/general_command.c.o"
   "libhal.a"

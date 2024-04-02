@@ -5,6 +5,9 @@ hal/CMakeFiles/hal.dir/src/accelerometer.c.o: /home/felix/cmpt433/work/Assignmen
 hal/CMakeFiles/hal.dir/src/accelerometer.c.o: /home/felix/cmpt433/work/Assignment\ 4/find_the_dot/hal/include/hal/general_command.h
 hal/CMakeFiles/hal.dir/src/accelerometer.c.o: /home/felix/cmpt433/work/Assignment\ 4/find_the_dot/hal/src/accelerometer.c
 
+hal/CMakeFiles/hal.dir/src/buzzer.c.o: /home/felix/cmpt433/work/Assignment\ 4/find_the_dot/hal/include/hal/general_command.h
+hal/CMakeFiles/hal.dir/src/buzzer.c.o: /home/felix/cmpt433/work/Assignment\ 4/find_the_dot/hal/src/buzzer.c
+
 hal/CMakeFiles/hal.dir/src/display.c.o: /home/felix/cmpt433/work/Assignment\ 4/find_the_dot/hal/include/hal/display.h
 hal/CMakeFiles/hal.dir/src/display.c.o: /home/felix/cmpt433/work/Assignment\ 4/find_the_dot/hal/include/hal/general_command.h
 hal/CMakeFiles/hal.dir/src/display.c.o: /home/felix/cmpt433/work/Assignment\ 4/find_the_dot/hal/src/display.c

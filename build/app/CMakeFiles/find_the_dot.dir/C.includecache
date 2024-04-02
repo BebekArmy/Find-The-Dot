@@ -22,35 +22,3 @@ stdlib.h
 shutdown.h
 /home/felix/cmpt433/work/Assignment 4/find_the_dot/app/src/shutdown.h
 
-/home/felix/cmpt433/work/Assignment 4/find_the_dot/app/src/neopixel.c
-fcntl.h
--
-unistd.h
--
-stdio.h
--
-stdbool.h
--
-stdlib.h
--
-sys/mman.h
--
-pthread.h
--
-string.h
--
-hal/general_command.h
-/home/felix/cmpt433/work/Assignment 4/find_the_dot/app/src/hal/general_command.h
-../pru-as4/Linux/sharedDataStruct.h
-/home/felix/cmpt433/work/Assignment 4/find_the_dot/app/pru-as4/Linux/sharedDataStruct.h
-
-/home/felix/cmpt433/work/Assignment 4/find_the_dot/hal/include/hal/general_command.h
-stdint.h
--
-
-/home/felix/cmpt433/work/Assignment 4/find_the_dot/pru-as4/Linux/sharedDataStruct.h
-stdbool.h
--
-stdint.h
--
-

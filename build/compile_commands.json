@@ -6,6 +6,11 @@
 },
 {
   "directory": "/home/felix/cmpt433/work/Assignment 4/build/hal",
+  "command": "/usr/bin/arm-linux-gnueabihf-gcc  -I\"/home/felix/cmpt433/work/Assignment 4/find_the_dot/hal/hal/include\" -I\"/home/felix/cmpt433/work/Assignment 4/find_the_dot/hal/include\" -g -Wall -Wpedantic -Wextra -fdiagnostics-color -fsanitize=address -std=gnu11 -o CMakeFiles/hal.dir/src/buzzer.c.o -c \"/home/felix/cmpt433/work/Assignment 4/find_the_dot/hal/src/buzzer.c\"",
+  "file": "/home/felix/cmpt433/work/Assignment 4/find_the_dot/hal/src/buzzer.c"
+},
+{
+  "directory": "/home/felix/cmpt433/work/Assignment 4/build/hal",
   "command": "/usr/bin/arm-linux-gnueabihf-gcc  -I\"/home/felix/cmpt433/work/Assignment 4/find_the_dot/hal/hal/include\" -I\"/home/felix/cmpt433/work/Assignment 4/find_the_dot/hal/include\" -g -Wall -Wpedantic -Wextra -fdiagnostics-color -fsanitize=address -std=gnu11 -o CMakeFiles/hal.dir/src/display.c.o -c \"/home/felix/cmpt433/work/Assignment 4/find_the_dot/hal/src/display.c\"",
   "file": "/home/felix/cmpt433/work/Assignment 4/find_the_dot/hal/src/display.c"
 },
