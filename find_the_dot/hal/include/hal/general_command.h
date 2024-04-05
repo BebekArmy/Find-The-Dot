@@ -9,5 +9,6 @@ long long getTimeInMs(void);
 void sleepForMs(long long delayInMs);
 void runCommand(char* command);
 void writeToFile(const char *file, const char *value);
+double random_double(double min, double max);
 
 #endif

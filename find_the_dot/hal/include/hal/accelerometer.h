@@ -12,4 +12,8 @@ void createAccelerometerThread();
 void shutdownAccelerometer();
 void joinAccelerometerThread();
 
+double getXpositiondiff();
+double getYpositiondiff();
+
+
 #endif

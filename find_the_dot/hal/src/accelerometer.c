@@ -1,5 +1,6 @@
 #include "hal/accelerometer.h"
 #include "hal/general_command.h"
+#include "../../app/include/joystick_pru.h"
 
 #include <fcntl.h>
 #include <sys/ioctl.h>
@@ -24,10 +25,37 @@
 #define REG_Z_H 0x2D
 
 #define ACCELEROMETER_CONVERSION 6555
+#define MIN_VALUE -0.5
+#define MAX_VALUE 0.5
 
 static pthread_t accelerometerThread;
 
 static bool shutdown = false;
+static double x_target = 0.0;
+static double y_target = 0.0;
+
+static double x_position_difference = 0.0;
+static double y_position_difference = 0.0;
+
+double getXtarget()
+{
+    return x_target;
+}
+
+double getYtarget()
+{
+    return y_target;
+}
+
+double getXpositiondiff()
+{
+    return x_position_difference;
+}
+
+double getYpositiondiff()
+{
+    return y_position_difference;
+}
 
 static int initI2cBus(char *bus, int address)
 {
@@ -84,7 +112,7 @@ void initializeAccelerometer()
     writeI2cReg(i2cFileDesc, 0x20, 0x27);
 }
 
-int16_t readAccelerometerAxis(int i2cFileDesc, unsigned char regLSB, unsigned char regMSB)
+double readAccelerometerAxis(int i2cFileDesc, unsigned char regLSB, unsigned char regMSB)
 {
     // Accelerometer readings
     unsigned char buff[2];
@@ -97,30 +125,53 @@ int16_t readAccelerometerAxis(int i2cFileDesc, unsigned char regLSB, unsigned ch
     // Combine low and high bytes to get full 16-bit value
     int16_t axisValue = (buff[1] << 8) | buff[0];
 
-    return axisValue / ACCELEROMETER_CONVERSION;
+    // scale to range [-0.5, 0.5]
+    return ((double)axisValue / 16384) * 0.5;
 }
 
-void convertAccelerometerReadingToSound(int16_t x, int16_t y, int16_t z)
+void setRandomTarget()
 {
-    printf("X: %d, Y: %d, Z: %d\n", x, y, z);
+    // printf("X: %f, Y: %f\n", x, y);
+    x_target = random_double(MIN_VALUE, MAX_VALUE);
+    y_target = random_double(MIN_VALUE, MAX_VALUE);
+}
+
+void setPositionDifference(double x, double y)
+{
+    // printf("X: %f, Y: %f\n", x, y);
+    x_position_difference = x;
+    y_position_difference = y;
 }
 
 void *updateAccelerometerReading(void *args)
 {
     (void)args;
     int i2cFileDesc = initI2cBus(I2CDRV_LINUX_BUS1, I2C_DEVICE_ADDRESS);
+    // double x_target = random_double(MIN_VALUE, MAX_VALUE);
+    //     double y_target = random_double(MIN_VALUE, MAX_VALUE);
 
+    // setRandomTarget();
     while (!shutdown)
     {
+        if (isJoystickDownPressed() && x_position_difference == 0 && y_position_difference == 0)
+        {
+            // x_target = random_double(MIN_VALUE, MAX_VALUE);
+            //             y_target = random_double(MIN_VALUE, MAX_VALUE);
 
-        int16_t x = readAccelerometerAxis(i2cFileDesc, REG_X_L, REG_X_H);
-        int16_t y = readAccelerometerAxis(i2cFileDesc, REG_Y_L, REG_Y_H);
-        int16_t z = readAccelerometerAxis(i2cFileDesc, REG_Z_L, REG_Z_H);
+            
+            // setRandomTarget();
+        }
+        double x = readAccelerometerAxis(i2cFileDesc, REG_X_L, REG_X_H);
+        double y = readAccelerometerAxis(i2cFileDesc, REG_Y_L, REG_Y_H);
+        // int16_t z = readAccelerometerAxis(i2cFileDesc, REG_Z_L, REG_Z_H);
+        // printf("X: %f, Y: %f\n", x, y);
 
-        convertAccelerometerReadingToSound(x, y, z);
+        setPositionDifference((double)x - x_target, (double)y - y_target);
+
+        // setPositionDifference(fabs((double)x-x_target), fabs((double)y-y_target));
+        // printf("X: %f, Y: %f\n", x_position_difference, y_position_difference);
 
         sleepForMs(5);
-
     }
 
     close(i2cFileDesc);

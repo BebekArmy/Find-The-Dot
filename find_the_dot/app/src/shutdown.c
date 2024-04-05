@@ -18,6 +18,11 @@ void createThreads()
     neopixelInit();
     joystickInit();
     buzzerInit();
+    initializeDisplay();
+    createDisplayThread();
+
+    initializeAccelerometer();
+    createAccelerometerThread();
 
 }
 
@@ -26,6 +31,12 @@ void joinThreads()
     neopixelShutdown();
     joystickShutdown();
     buzzerShutdown();
+
+    shutdownDisplay();
+    joinDisplayThread();
+
+    shutdownAccelerometer();
+    joinAccelerometerThread();
 }
 
 void waitShutdown()

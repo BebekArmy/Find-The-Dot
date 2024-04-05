@@ -61,3 +61,7 @@ void writeToFile(const char *file, const char *value) {
     fprintf(f, "%s", value);
     fclose(f);
 }
+
+double random_double(double min, double max) {
+    return ((double)rand() / RAND_MAX) * (max - min) + min;
+}
