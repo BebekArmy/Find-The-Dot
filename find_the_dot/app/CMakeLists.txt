@@ -6,7 +6,7 @@ file(GLOB MY_SOURCES "src/*.c")
 add_executable(find_the_dot ${MY_SOURCES})
 
 # Make use of the HAL library
-target_link_libraries(find_the_dot LINK_PRIVATE hal)
+target_link_libraries(find_the_dot LINK_PRIVATE hal Threads::Threads)
 
 # Copy executable to final location (change `hello_world` to project name as needed)
 add_custom_command(TARGET find_the_dot POST_BUILD 

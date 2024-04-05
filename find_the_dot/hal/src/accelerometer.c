@@ -147,24 +147,20 @@ void *updateAccelerometerReading(void *args)
 {
     (void)args;
     int i2cFileDesc = initI2cBus(I2CDRV_LINUX_BUS1, I2C_DEVICE_ADDRESS);
-    // double x_target = random_double(MIN_VALUE, MAX_VALUE);
-    //     double y_target = random_double(MIN_VALUE, MAX_VALUE);
+ 
 
     // setRandomTarget();
+
     while (!shutdown)
     {
         if (isJoystickDownPressed() && x_position_difference == 0 && y_position_difference == 0)
         {
-            // x_target = random_double(MIN_VALUE, MAX_VALUE);
-            //             y_target = random_double(MIN_VALUE, MAX_VALUE);
-
-            
+          
             // setRandomTarget();
         }
         double x = readAccelerometerAxis(i2cFileDesc, REG_X_L, REG_X_H);
         double y = readAccelerometerAxis(i2cFileDesc, REG_Y_L, REG_Y_H);
-        // int16_t z = readAccelerometerAxis(i2cFileDesc, REG_Z_L, REG_Z_H);
-        // printf("X: %f, Y: %f\n", x, y);
+
 
         setPositionDifference((double)x - x_target, (double)y - y_target);
 

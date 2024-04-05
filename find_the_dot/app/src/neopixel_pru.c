@@ -8,7 +8,10 @@
 #include <string.h>
 #include "hal/general_command.h"
 #include "hal/accelerometer.h"
+#include "hal/buzzer.h"
 #include "../pru-as4/Linux/sharedDataStruct.h"
+#include "joystick_pru.h"
+
 // General PRU Memomry Sharing Routine
 // ----------------------------------------------------------------
 #define PRU_ADDR 0x4A300000 // Start of PRU memory Page 184 am335x TRM
@@ -22,6 +25,13 @@
 #define PRU1_MEM_FROM_BASE(base) ((base) + PRU1_DRAM + PRU_MEM_RESERVED)
 #define PRUSHARED_MEM_FROM_BASE(base) ((base) + PRU_SHAREDMEM)
 // Return the address of the PRU's base memory
+
+#define GREEN 0x0f000000
+#define BLUE 0x00000f00
+#define RED 0x000f0000
+#define BRIGHT_GREEN 0xff000000
+#define BRIGHT_BLUE 0x0000ff00
+#define BRIGHT_RED 0x00ff0000
 
 static bool shutdown = false;
 static pthread_t neopixelThread;
@@ -48,61 +58,37 @@ uint32_t init_color[STR_LEN] = {
     // 0xffffffff, // White w/ Bright White
 };
 
-uint32_t off_color[STR_LEN] = {
-    0x00000000, // Green
-    0x00000000, // Red
-    0x00000000, // Blue
-    0x00000000, // White
-    0x00000000, // White (via RGB)
-    0x00000000, // Yellow
-    0x00000000, // Purple
-    0x00000000, // Teal
-
-    // Try these; they are birght!
-    // (You'll need to comment out some of the above)
-    // 0xff000000, // Green Bright
-    // 0x00ff0000, // Red Bright
-    // 0x0000ff00, // Blue Bright
-    // 0xffffff00, // White
-    // 0xff0000ff, // Green Bright w/ Bright White
-    // 0x00ff00ff, // Red Bright w/ Bright White
-    // 0x0000ffff, // Blue Bright w/ Bright White
-    // 0xffffffff, // White w/ Bright White
-};
-
 uint32_t blue_color[STR_LEN] = {
-    0x00000f00, // Green
-    0x00000f00, // Red
-    0x00000f00, // Blue
-    0x00000f00, // White
-    0x00000f00, // White (via RGB)
-    0x00000f00, // Yellow
-    0x00000f00, // Purple
-    0x00000f00, // Teal
+    0x00000f00,
+    0x00000f00, 
+    0x00000f00, 
+    0x00000f00, 
+    0x00000f00, 
+    0x00000f00,
+    0x00000f00, 
+    0x00000f00, 
 };
 
 uint32_t green_color[STR_LEN] = {
-    0x0f000000, // Green
-    0x0f000000, // Red
-    0x0f000000, // Blue
-    0x0f000000, // White
-    0x0f000000, // White (via RGB)
-    0x0f000000, // Yellow
-    0x0f000000, // Purple
-    0x0f000000, // Teal
-
+    0x0f000000,
+    0x0f000000, 
+    0x0f000000, 
+    0x0f000000, 
+    0x0f000000, 
+    0x0f000000,
+    0x0f000000, 
+    0x0f000000, 
 };
 
 uint32_t red_color[STR_LEN] = {
-    0x000f0000, // Green
-    0x000f0000, // Red
-    0x000f0000, // Blue
-    0x000f0000, // White
-    0x000f0000, // White (via RGB)
-    0x000f0000, // Yellow
-    0x000f0000, // Purple
-    0x000f0000, // Teal
-
+    0x000f0000,
+    0x000f0000, 
+    0x000f0000, 
+    0x000f0000, 
+    0x000f0000, 
+    0x000f0000,
+    0x000f0000, 
+    0x000f0000, 
 };
 
 static volatile void *getPruMmapAddr(void)
@@ -133,60 +119,148 @@ static void freePruMmapAddr(volatile void *pPruBase)
     }
 }
 
-uint32_t* create_led_color(double y_position) {
-    uint32_t* color_array = (uint32_t*)malloc(STR_LEN * sizeof(uint32_t));
-    if (color_array == NULL) {
-        // Handle memory allocation error
-        return NULL;
-    }
+void setColor(uint32_t *color, int current_color, int start_index)
+{
+    color[start_index] = current_color;
 
-    // Set the LEDs based on the y_position
-    if (y_position < -0.03) {
-        // Bottom LEDs blue
-        for (int i = 0; i < STR_LEN; ++i) {
-            color_array[i] = (i < 3) ? 0x00000f00 : 0x00000000;
-        }
-    } else if (y_position > 0.03) {
-        // Top LEDs blue
-        for (int i = 0; i < STR_LEN; ++i) {
-            color_array[i] = (i >= STR_LEN - 3) ? 0x00000f00 : 0x00000000;
-        }
-    } else {
-        // Middle LEDs blue
-        int start_index = (STR_LEN - 3) / 2;
-        for (int i = 0; i < STR_LEN; ++i) {
-            color_array[i] = (i >= start_index && i < start_index + 3) ? 0x00000f00 : 0x00000000;
-        }
+    if (current_color == GREEN)
+    {
+        color[start_index + 1] = BRIGHT_GREEN;
     }
-
-    return color_array;
+    else if (current_color == RED)
+    {
+        color[start_index + 1] = BRIGHT_RED;
+    }
+    else if (current_color == BLUE)
+    {
+        color[start_index + 1] = BRIGHT_BLUE;
+    }
+    color[start_index + 2] = current_color;
 }
 
+void set_led_color(uint32_t *led_color, double x_position_diff, double y_position_diff)
+{
+    uint32_t color[8] = {0};
+    int current_color = 0x00000000;
 
-void set_led_color(uint32_t *led_color, double position_diff) {
-    // Turn off all LEDs
+    // range [-0.5, 0.5] divided into 11 possible zones
+    double zone_increment = 1.0 / 11.0;
 
-uint32_t color[8] = {0};
+    printf("%f\n", x_position_diff);
 
-printf("%f\n", position_diff);
+    // if (isJoystickDownPressed()) {
+    //             playMiss();
+    //         }
 
-    // Calculate the index of the first LED in the target range
-    int target_start_index;
-    if (position_diff < -0.03) {
-        target_start_index = 0; // Bottom LEDs
-    } else if (position_diff > 0.03) {
-        target_start_index = 8 - 3; // Top LEDs
-    } else {
-        target_start_index = (8 - 3) / 2; // Middle LEDs
+    if (y_position_diff < -0.03)
+    {
+
+        current_color = GREEN;
+    }
+    else if (y_position_diff > 0.03)
+    {
+        current_color = RED;
+    }
+    else
+    {
+        current_color = BLUE;
     }
 
-    //Turn on the target LEDs
-    for (int i = target_start_index; i < target_start_index + 3; ++i) {
-        color[i] = 0x000f0000; // Set to red color
-    }
-    
-        memcpy(led_color, color, sizeof(color));
 
+    if (x_position_diff <= -0.5 + zone_increment)
+    {
+        color[0] = current_color;
+    }
+    else if (x_position_diff <= -0.5 + 2 * zone_increment && x_position_diff > -0.5 + zone_increment)
+    {
+        if (current_color == GREEN)
+        {
+            color[1] = BRIGHT_GREEN;
+        }
+        else if (current_color == RED)
+        {
+            color[1] = BRIGHT_RED;
+        }
+        else if (current_color == BLUE)
+        {
+            color[1] = BRIGHT_BLUE;
+        }
+        color[0] = current_color;
+    }
+    else if (x_position_diff <= -0.5 + 3 * zone_increment && x_position_diff > -0.5 + 2 * zone_increment)
+    {
+        setColor(&color, current_color, 0);
+    }
+    else if (x_position_diff <= -0.5 + 4 * zone_increment && x_position_diff > -0.5 + 3 * zone_increment)
+    {
+        setColor(&color, current_color, 1);
+    }
+    else if (x_position_diff <= -0.5 + 5 * zone_increment && x_position_diff > -0.5 + 4 * zone_increment)
+    {
+        setColor(&color, current_color, 2);
+    }
+    // On Target vertically
+    else if (x_position_diff <= -0.5 + 6 * zone_increment && x_position_diff > -0.5 + 5 * zone_increment)
+    {
+
+        if (current_color == GREEN)
+        {
+            memcpy(led_color, green_color, sizeof(color));
+            return;
+        }
+        else if (current_color == RED)
+        {
+            memcpy(led_color, red_color, sizeof(color));
+            return;
+        }
+        else if (current_color == BLUE)
+        {
+
+            memcpy(led_color, blue_color, sizeof(color));
+
+            // if (isJoystickDownPressed()) {
+            //     playHit();
+            //     setRandomTarget();
+            // }
+
+            return;
+        }
+    }
+    else if (x_position_diff <= -0.5 + 7 * zone_increment && x_position_diff > -0.5 + 6 * zone_increment)
+    {
+        setColor(&color, current_color, 3);
+    }
+    else if (x_position_diff <= -0.5 + 8 * zone_increment && x_position_diff > -0.5 + 7 * zone_increment)
+    {
+        setColor(&color, current_color, 4);
+    }
+    else if (x_position_diff <= -0.5 + 9 * zone_increment && x_position_diff > -0.5 + 8 * zone_increment)
+    {
+        setColor(&color, current_color, 5);
+    }
+    else if (x_position_diff <= -0.5 + 10 * zone_increment && x_position_diff > -0.5 + 9 * zone_increment)
+    {
+        if (current_color == GREEN)
+        {
+            color[6] = BRIGHT_GREEN;
+        }
+        else if (current_color == RED)
+        {
+            color[6] = BRIGHT_RED;
+        }
+        else if (current_color == BLUE)
+        {
+            color[6] = BRIGHT_BLUE;
+        }
+
+        color[7] = current_color;
+    }
+    else if (x_position_diff <= -0.5 + 11 * zone_increment && x_position_diff > -0.5 + 10 * zone_increment)
+    {
+        color[7] = current_color;
+    }
+
+    memcpy(led_color, color, sizeof(color));
 }
 
 void *neopixel(void *args)
@@ -195,26 +269,14 @@ void *neopixel(void *args)
     volatile void *pPruBase = getPruMmapAddr();
     volatile sharedMemStruct_t *pSharedPru0 = PRU0_MEM_FROM_BASE(pPruBase);
 
+    int score = 0;
+
     while (!shutdown)
     {
-        // if (getXpositiondiff() < -0.03)
-        // {
-        //     memcpy(pSharedPru0->ledColor, green_color, sizeof(green_color));
-        // }
-        // else if (getXpositiondiff() > 0.03)
-        // {
-        //     memcpy(pSharedPru0->ledColor, red_color, sizeof(red_color));
-        // }
-        // else
-        // {
-        //     memcpy(pSharedPru0->ledColor, blue_color, sizeof(blue_color));
-        // }
 
-                    //memcpy(pSharedPru0->ledColor, create_led_color(getYpositiondiff()), sizeof(blue_color));
+        set_led_color(pSharedPru0->ledColor, getYpositiondiff(), getXpositiondiff());
 
-                set_led_color(pSharedPru0->ledColor, getYpositiondiff());
-
-        sleepForMs(10);
+        sleepForMs(100);
     }
 
     // Turn off all LEDs

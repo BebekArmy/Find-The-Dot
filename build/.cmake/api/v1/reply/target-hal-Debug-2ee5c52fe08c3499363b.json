@@ -48,12 +48,6 @@
 				"parent" : 2
 			},
 			{
-				"command" : 1,
-				"file" : 1,
-				"line" : 12,
-				"parent" : 2
-			},
-			{
 				"command" : 2,
 				"file" : 0,
 				"line" : 5,
@@ -88,12 +82,12 @@
 					"fragment" : "-Wextra"
 				},
 				{
-					"backtrace" : 4,
-					"fragment" : "-fdiagnostics-color"
+					"backtrace" : 3,
+					"fragment" : "-pthread"
 				},
 				{
-					"backtrace" : 5,
-					"fragment" : "-fsanitize=address"
+					"backtrace" : 4,
+					"fragment" : "-fdiagnostics-color"
 				},
 				{
 					"fragment" : "-std=gnu11"
@@ -102,11 +96,11 @@
 			"includes" : 
 			[
 				{
-					"backtrace" : 6,
+					"backtrace" : 5,
 					"path" : "/home/ryan/cmpt433/work/as4/Find-The-Dot/find_the_dot/hal/hal/include"
 				},
 				{
-					"backtrace" : 7,
+					"backtrace" : 6,
 					"path" : "/home/ryan/cmpt433/work/as4/Find-The-Dot/find_the_dot/hal/include"
 				}
 			],

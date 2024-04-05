@@ -35,7 +35,7 @@ void testjoyStick() {
 int main(void) {
 
     createThreads();
-    sleep(20);
+    sleep(60);
     joinThreads();
 
     return 0;

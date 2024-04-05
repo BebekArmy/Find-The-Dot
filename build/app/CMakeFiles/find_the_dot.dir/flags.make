@@ -6,5 +6,5 @@ C_DEFINES =
 
 C_INCLUDES = -I/home/ryan/cmpt433/work/as4/Find-The-Dot/find_the_dot/app/include -I/home/ryan/cmpt433/work/as4/Find-The-Dot/find_the_dot/app/../pru-as4 -I/home/ryan/cmpt433/work/as4/Find-The-Dot/find_the_dot/hal/include
 
-C_FLAGS = -g -Wall -Wpedantic -Wextra -fdiagnostics-color -fsanitize=address -std=gnu11
+C_FLAGS = -g -Wall -Wpedantic -Wextra -pthread -fdiagnostics-color -std=gnu11
 

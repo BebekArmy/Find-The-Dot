@@ -14,6 +14,7 @@ void joinAccelerometerThread();
 
 double getXpositiondiff();
 double getYpositiondiff();
+void setRandomTarget();
 
 
 #endif
