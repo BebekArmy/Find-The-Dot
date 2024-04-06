@@ -1,7 +1,3 @@
 {
-    "cmake.sourceDirectory": "/home/ryan/cmpt433/work/as4/Find-The-Dot/find_the_dot",
-    "files.associations": {
-        "shareddatastruct.h": "c",
-        "accelerometer.h": "c"
-    }
+    "cmake.sourceDirectory": "/home/felix/cmpt433/work/Assignment 4/find_the_dot"
 }

@@ -37,15 +37,19 @@ void playFrequency(int frequency, int durationMs) {
 
 void playHitSound() {
     int hitFrequencies[] = {440, 660, 440, 600};
-    for (int i = 0; i < sizeof(hitFrequencies)/sizeof(hitFrequencies[0]); i++) {
+    for (u_int32_t i = 0; i < sizeof(hitFrequencies)/sizeof(hitFrequencies[0]); i++) {
         playFrequency(hitFrequencies[i], 125); 
     }
 }
 
 void playMissSound() {
     int missFrequencies[] = {120, 60, 120, 60};
-    for (int i = 0; i < sizeof(missFrequencies)/sizeof(missFrequencies[0]); i++) {
+    for (u_int32_t i = 0; i < sizeof(missFrequencies)/sizeof(missFrequencies[0]); i++) {
         playFrequency(missFrequencies[i], 125);
+        if(sound == 1){
+            playHitSound();
+            break;
+        }
     }
 }
 

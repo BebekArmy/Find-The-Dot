@@ -126,19 +126,17 @@ double readAccelerometerAxis(int i2cFileDesc, unsigned char regLSB, unsigned cha
     int16_t axisValue = (buff[1] << 8) | buff[0];
 
     // scale to range [-0.5, 0.5]
-    return ((double)axisValue / 16384) * 0.5;
+    return ((double)axisValue / 16384) * 1;
 }
 
 void setRandomTarget()
 {
-    // printf("X: %f, Y: %f\n", x, y);
     x_target = random_double(MIN_VALUE, MAX_VALUE);
     y_target = random_double(MIN_VALUE, MAX_VALUE);
 }
 
 void setPositionDifference(double x, double y)
 {
-    // printf("X: %f, Y: %f\n", x, y);
     x_position_difference = x;
     y_position_difference = y;
 }
@@ -149,23 +147,16 @@ void *updateAccelerometerReading(void *args)
     int i2cFileDesc = initI2cBus(I2CDRV_LINUX_BUS1, I2C_DEVICE_ADDRESS);
  
 
-    // setRandomTarget();
+    setRandomTarget();
 
     while (!shutdown)
     {
-        if (isJoystickDownPressed() && x_position_difference == 0 && y_position_difference == 0)
-        {
-          
-            // setRandomTarget();
-        }
         double x = readAccelerometerAxis(i2cFileDesc, REG_X_L, REG_X_H);
         double y = readAccelerometerAxis(i2cFileDesc, REG_Y_L, REG_Y_H);
 
 
         setPositionDifference((double)x - x_target, (double)y - y_target);
 
-        // setPositionDifference(fabs((double)x-x_target), fabs((double)y-y_target));
-        // printf("X: %f, Y: %f\n", x_position_difference, y_position_difference);
 
         sleepForMs(5);
     }

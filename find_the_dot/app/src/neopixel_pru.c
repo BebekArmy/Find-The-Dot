@@ -9,7 +9,9 @@
 #include "hal/general_command.h"
 #include "hal/accelerometer.h"
 #include "hal/buzzer.h"
+#include "hal/display.h"
 #include "../pru-as4/Linux/sharedDataStruct.h"
+#include "shutdown.h"
 #include "joystick_pru.h"
 
 // General PRU Memomry Sharing Routine
@@ -34,6 +36,7 @@
 #define BRIGHT_RED 0x00ff0000
 
 static bool shutdown = false;
+static int score = 0;
 static pthread_t neopixelThread;
 
 uint32_t init_color[STR_LEN] = {
@@ -59,36 +62,36 @@ uint32_t init_color[STR_LEN] = {
 };
 
 uint32_t blue_color[STR_LEN] = {
-    0x00000f00,
-    0x00000f00, 
-    0x00000f00, 
-    0x00000f00, 
-    0x00000f00, 
-    0x00000f00,
-    0x00000f00, 
-    0x00000f00, 
+    BRIGHT_BLUE,
+    BRIGHT_BLUE, 
+    BRIGHT_BLUE, 
+    BRIGHT_BLUE, 
+    BRIGHT_BLUE, 
+    BRIGHT_BLUE,
+    BRIGHT_BLUE, 
+    BRIGHT_BLUE, 
 };
 
 uint32_t green_color[STR_LEN] = {
-    0x0f000000,
-    0x0f000000, 
-    0x0f000000, 
-    0x0f000000, 
-    0x0f000000, 
-    0x0f000000,
-    0x0f000000, 
-    0x0f000000, 
+    BRIGHT_GREEN,
+    BRIGHT_GREEN, 
+    BRIGHT_GREEN, 
+    BRIGHT_GREEN, 
+    BRIGHT_GREEN, 
+    BRIGHT_GREEN,
+    BRIGHT_GREEN, 
+    BRIGHT_GREEN, 
 };
 
 uint32_t red_color[STR_LEN] = {
-    0x000f0000,
-    0x000f0000, 
-    0x000f0000, 
-    0x000f0000, 
-    0x000f0000, 
-    0x000f0000,
-    0x000f0000, 
-    0x000f0000, 
+    BRIGHT_RED,
+    BRIGHT_RED, 
+    BRIGHT_RED, 
+    BRIGHT_RED, 
+    BRIGHT_RED, 
+    BRIGHT_RED,
+    BRIGHT_RED, 
+    BRIGHT_RED, 
 };
 
 static volatile void *getPruMmapAddr(void)
@@ -144,20 +147,18 @@ void set_led_color(uint32_t *led_color, double x_position_diff, double y_positio
     int current_color = 0x00000000;
 
     // range [-0.5, 0.5] divided into 11 possible zones
-    double zone_increment = 1.0 / 11.0;
+    double zone_increment = 1 / 11.0;
 
-    printf("%f\n", x_position_diff);
 
-    // if (isJoystickDownPressed()) {
-    //             playMiss();
-    //         }
+    if (isJoystickDownPressed()) {
+            playMiss();
+    }
 
-    if (y_position_diff < -0.03)
+    if (y_position_diff < -0.07)
     {
-
         current_color = GREEN;
     }
-    else if (y_position_diff > 0.03)
+    else if (y_position_diff > 0.07)
     {
         current_color = RED;
     }
@@ -218,10 +219,12 @@ void set_led_color(uint32_t *led_color, double x_position_diff, double y_positio
 
             memcpy(led_color, blue_color, sizeof(color));
 
-            // if (isJoystickDownPressed()) {
-            //     playHit();
-            //     setRandomTarget();
-            // }
+            if (isJoystickDownPressed()) {
+                playHit();
+                setRandomTarget();
+                setDisplay(++score);
+                sleepForMs(500);
+            }
 
             return;
         }
@@ -255,7 +258,7 @@ void set_led_color(uint32_t *led_color, double x_position_diff, double y_positio
 
         color[7] = current_color;
     }
-    else if (x_position_diff <= -0.5 + 11 * zone_increment && x_position_diff > -0.5 + 10 * zone_increment)
+    else if (x_position_diff > -0.5 + 10 * zone_increment)
     {
         color[7] = current_color;
     }
@@ -269,14 +272,16 @@ void *neopixel(void *args)
     volatile void *pPruBase = getPruMmapAddr();
     volatile sharedMemStruct_t *pSharedPru0 = PRU0_MEM_FROM_BASE(pPruBase);
 
-    int score = 0;
+    
 
     while (!shutdown)
     {
 
         set_led_color(pSharedPru0->ledColor, getYpositiondiff(), getXpositiondiff());
-
-        sleepForMs(100);
+        if(isJoystickRightPressed()){
+            signalShutdown();
+        }
+        sleepForMs(90);
     }
 
     // Turn off all LEDs
